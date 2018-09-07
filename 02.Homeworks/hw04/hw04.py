@@ -62,6 +62,10 @@ def g(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n <= 3:
+        return n
+    else:
+        return g(n - 1) + 2 * g(n - 2) + 3 * g(n - 3)
 
 def g_iter(n):
     """Return the value of G(n), computed iteratively.
@@ -81,6 +85,35 @@ def g_iter(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    
+    g_3Prev, g_2Prev, g_1Prev, g_Curr = 0, 1, 2, 3
+    i = 1
+    if n <= 3:
+        return n
+    else:
+        while i <= n - 3:
+            g_1Prev, g_2Prev, g_3Prev = g_Curr, g_1Prev, g_2Prev
+            g_Curr = g_1Prev + 2 * g_2Prev + 3 * g_3Prev 
+            i += 1
+        return g_Curr
+    
+
+def pingpong_iter(n):
+    i = 1
+    k = 1
+    countDirection = 1  # 1: UP , -1 : DOWN
+
+    def count(k, d):
+        return k + int(d * 1)
+    
+    while i < n:
+        if i % 7 == 0 or has_seven(i):
+            countDirection *= -1
+        i += 1
+        k = count(k, countDirection)
+        print(i)
+    return k
+
 
 def pingpong(n):
     """Return the nth element of the ping-pong sequence.
@@ -114,7 +147,21 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
+      
+    def iter_recursive(i, k, countDirection):
+        if i == n:
+            return k
+        elif (i % 7 == 0 or has_seven(i)) and countDirection == 1:
+            return iter_recursive(i + 1, k - 1, -1)
+        elif (i % 7 == 0 or has_seven(i)) and countDirection == -1:
+            return iter_recursive(i + 1, k + 1, 1)
+        elif (i % 7 != 0 or not has_seven(i)) and countDirection == 1:
+            return iter_recursive(i + 1, k + 1, 1)
+        elif (i % 7 != 0 or not has_seven(i)) and countDirection == -1:
+            return iter_recursive(i + 1, k - 1, -1)
 
+    return iter_recursive(1, 1, 1)
+    
 def has_seven(k):
     """Returns True if at least one of the digits of k is a 7, False otherwise.
 
@@ -167,4 +214,4 @@ def make_anonymous_factorial():
     >>> check(HW_SOURCE_FILE, 'make_anonymous_factorial', ['Assign', 'AugAssign', 'FunctionDef', 'Recursion'])
     True
     """
-    return 'YOUR_EXPRESSION_HERE'
+    return 'write it here' 
