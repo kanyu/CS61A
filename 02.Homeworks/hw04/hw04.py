@@ -198,7 +198,6 @@ def count_change(amount):
     9828
     """
     "*** YOUR CODE HERE ***"
-
 ###################
 # Extra Questions #
 ###################

@@ -18,7 +18,7 @@ Question 2
 Fill in the blanks for the following expression so that result is the boolean True.
 """
 x = lambda x: lambda y: x(y)
-result = (lambda ______: x(fair)(dice))(lambda fair: fair == 3, 3)
+result = (lambda fair, dice: x(fair)(dice))(lambda fair: fair == 3, 3)
 
 """
 Fill in the blanks for the following expression so that each call to mapper prints the output displayed below:
@@ -37,6 +37,7 @@ Fill in the blanks for the following expression so that each call to mapper prin
 -2
 -1
 0
+
 1
 2
 >>> mapper(lambda x: ______, 5)
